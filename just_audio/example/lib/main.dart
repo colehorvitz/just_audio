@@ -283,6 +283,18 @@ class ControlButtons extends StatelessWidget {
 
   ControlButtons(this.player);
 
+  Future<void> _seekToNextTest() async {
+    print("seeking to next...");
+    await player.seekToNext();
+    print("done");
+  }
+
+  Future<void> _seekToPreviousTest() async {
+    print("seeking to next...");
+    await player.seekToPrevious();
+    print("done");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -306,7 +318,7 @@ class ControlButtons extends StatelessWidget {
           stream: player.sequenceStateStream,
           builder: (context, snapshot) => IconButton(
             icon: Icon(Icons.skip_previous),
-            onPressed: player.hasPrevious ? player.seekToPrevious : null,
+            onPressed: player.hasPrevious ? _seekToPreviousTest : null,
           ),
         ),
         StreamBuilder<PlayerState>(
@@ -349,7 +361,7 @@ class ControlButtons extends StatelessWidget {
           stream: player.sequenceStateStream,
           builder: (context, snapshot) => IconButton(
             icon: Icon(Icons.skip_next),
-            onPressed: player.hasNext ? player.seekToNext : null,
+            onPressed: player.hasNext ? _seekToNextTest : null,
           ),
         ),
         StreamBuilder<double>(
