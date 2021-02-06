@@ -290,7 +290,7 @@ class ControlButtons extends StatelessWidget {
   }
 
   Future<void> _seekToPreviousTest() async {
-    print("seeking to next...");
+    print("seeking to prev...");
     await player.seekToPrevious();
     print("done");
   }
